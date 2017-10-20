@@ -36,6 +36,10 @@ questionsColl.indexes.create_one({ "id" => -1 }, :unique => true)
 
 first = true
 ARGF.each do |line|
+  # string fields have quotation marks in order to allow embedded commas, so have to remove them i guess?
+  # time fields are pacific time and in string format, need to convert to utc
+  # integers are strings
+  # last field has a "\n" so use chomp to eliminate it?
   if first
     first = false
     pp line
