@@ -6,6 +6,9 @@ require 'time'
 require 'date'
 require 'mongo'
 
+# based on:
+# https://github.com/rtanglao/2016-rtgram/blob/master/backupPublicVancouverPhotosByDateTaken.rb
+
 MONGO_HOST = ENV["MONGO_HOST"]
 raise(StandardError,"Set Mongo hostname in ENV: 'MONGO_HOST'") if !MONGO_HOST
 MONGO_PORT = ENV["MONGO_PORT"]
