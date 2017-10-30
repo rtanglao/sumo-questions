@@ -7,6 +7,7 @@ sumo questions: graphics, metrics and infoviz
 * 1\. add questions to mongodb
 
 ```bash
+. setupMongo
 cat SUMO-QUESTIONS_MYSQL_20OCT2017/question_questions.csv | ./add-questions-to-mongodb.rb 
 ```
 ## 19october2017
