@@ -76,6 +76,7 @@ CSV.new(ARGF.file, :headers => true,
     $stderr.printf("answers is NIL, adding row hash\n")
   else
     $stderr.printf("answers NOT NIL, deleting old answer\n")
+    answers =  question["answers"]
     answers.delete_if{|answer|
       answer["answer_id"] == row_hash["answer_id"]}    
   end
