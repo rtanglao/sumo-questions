@@ -38,11 +38,6 @@ questionsColl.indexes.create_one({ "id" => -1 }, :unique => true)
 CSV.new(ARGF.file, :headers => true,
         :force_quotes => true
        ).each do |row|
-  # string fields have quotation marks at the beginning and end
-  # in order to allow embedded commas, so have to remove them i guess?
-  # time fields are pacific time and in string format, need to convert to utc
-  # integers are strings
-  # last field has a "\n" so use chomp to eliminate it?
  
   PP::pp(row, $stderr)
 
@@ -69,8 +64,25 @@ CSV.new(ARGF.file, :headers => true,
    row["marked_as_spam_by_id"] == "NULL" ? false :
      row["marked_as_spam_by_id"].to_i
   PP::pp(row_hash, $stderr)
-  #id = row_hash["id"]
-  #questionsColl.find({ 'id' => id }).update_one(
-  #  row_hash,:upsert => true )
-
+ 
+  question = questionsColl.find({ "id" => question_id}).\
+               projection({ "id" => 1, "answers" => 1}).limit(1).first()
+  begin $stderr.printf("can't find question:%d\n", question_id) ; next
+  end if question.nil?
+  pp question["id"]
+  pp question["answers"]
+  answers = []
+  if question["answers"].nil?
+    $stderr.printf("answers is NIL, adding row hash\n")
+  else
+    $stderr.printf("answers NOT NIL, deleting old answer\n")
+    answers.delete_if{|answer|
+      answer["answer_id"] == row_hash["answer_id"]}    
+  end
+  answers.push(row_hash)
+  $stderr.printf("UPDATING answers to:\n")
+  PP:pp(answers, $stderr)
+  questionsColl.find_one_and_update(
+       { id: question_id }, { "$set" => { answers: answers }},
+       :upsert => true)
 end
