@@ -81,7 +81,7 @@ CSV.new(ARGF.file, :headers => true,
   end
   answers.push(row_hash)
   $stderr.printf("UPDATING answers to:\n")
-  PP:pp(answers, $stderr)
+  PP::pp(answers, $stderr)
   questionsColl.find_one_and_update(
        { id: question_id }, { "$set" => { answers: answers }},
        :upsert => true)
