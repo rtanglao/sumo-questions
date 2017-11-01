@@ -1,5 +1,12 @@
 # sumo-questions
 sumo questions: graphics, metrics and infoviz
+## 31October2017
+
+* 1\. compute ```answered_in_72_hours``` boolean
+```bash
+./add-answered-in-72-hours.rb 2>stderr_add_answered.txt
+```
+
 ## 30October2017
 ### 30October2017-more data cleaning
 Also change:
