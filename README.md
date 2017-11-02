@@ -1,5 +1,12 @@
 # sumo-questions
 sumo questions: graphics, metrics and infoviz
+
+## 01November2017
+
+* 1\. query to get Firefox unanswered questions CSV file (I used 3T MongoChef to run the query), result is in https://github.com/rtanglao/sumo-questions/blob/master/firefox_desktop_only_not_answered_in_72hours_id_created.csv :
+```mongo
+db.questions.find({"product_id":1, "answered_in_72_hours":false}, {"id":1, "created":1, "_id":0})
+```
 ## 31October2017
 
 * 1\. compute ```answered_in_72_hours``` boolean
