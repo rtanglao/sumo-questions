@@ -2,6 +2,8 @@
 require 'rubygems'
 require 'pp'
 require 'csv'
+require 'uea-stemmer'
+stemmer = UEAStemmer.new
 
 #$CSV.new(ARGF.file, :headers => true).each do |row|
 # ARGF.each do |line|
@@ -24,7 +26,14 @@ CSV.foreach(ARGV[0], headers: true).with_index(1) do |row, ln|
   title = row['title']
   content = row['content']
   title.split(" ").each do |title_word|
-    puts title_word.delete ":\\-()[],;.!?'@#$%^&*<>/\"\\"
+    t = title_word.delete(":\\-()[],;.!?'@#$%^&*<>/\"\\")
+    next if t == ""
+    puts stemmer.stem(t)
+  end
+  content.split(" ").each do |content_word|
+    c = content_word.delete(":\\-()[],{};.!?'@#$%^&*<>/\"\\")
+    next if c == ""
+    puts stemmer.stem(c)
   end
 end
 
