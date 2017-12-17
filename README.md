@@ -1,6 +1,20 @@
 # sumo-questions
 sumo questions: graphics, metrics and infoviz
 
+## 16December2017 ##
+* 1\. Setup magic_cloud, from https://stackoverflow.com/questions/22715738/imagemagick-error :
+```bash
+https://stackoverflow.com/questions/22715738/imagemagick-error
+brew uninstall imagemagick@6 
+brew install imagemagick@6 
+PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig gem install rmagick
+```
+
+* 2\. make word cloud
+```bash
+../print-out-words-from-questions-questions.rb ff55-56-question_questions.csv >ff55-ff56-unanswered-questions.txt
+magic_cloud --textfile ff55-ff56-unanswered-questions.txt -f naive-ff55-ff56.jpg
+```
 ## 01November2017
 
 * 1\. query to get Firefox unanswered questions CSV file (I used 3T MongoChef to run the query), result is in https://github.com/rtanglao/sumo-questions/blob/master/firefox_desktop_only_not_answered_in_72hours_id_created.csv :
