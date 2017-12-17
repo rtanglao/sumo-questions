@@ -15,6 +15,10 @@ PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig gem install rmagick
 ../print-out-words-from-questions-questions.rb ff55-56-question_questions.csv >ff55-ff56-unanswered-questions.txt
 magic_cloud --textfile ff55-ff56-unanswered-questions.txt -f naive-ff55-ff56.jpg
 ```
+
+* 3\. Output
+![Naive 55-56 wordcloud](https://raw.githubusercontent.com/rtanglao/sumo-questions/master/SUMO-QUESTIONS_MYSQL_20OCT2017/naive-ff55-ff56.jpg)
+
 ## 01November2017
 
 * 1\. query to get Firefox unanswered questions CSV file (I used 3T MongoChef to run the query), result is in https://github.com/rtanglao/sumo-questions/blob/master/firefox_desktop_only_not_answered_in_72hours_id_created.csv :
