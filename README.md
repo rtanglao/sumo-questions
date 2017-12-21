@@ -1,6 +1,11 @@
 # sumo-questions
 sumo questions: graphics, metrics and infoviz
 
+## 21December2017 ##
+```bash
+../print-out-words-from-questions-questions.rb ff55-56-question_questions.csv >ff55-ff56-unanswered-questions.txt
+magic_cloud --textfile ff55-ff56-unanswered-questions.txt -f with-stopwords-ff55-ff56.jpg
+```
 ## 16December2017 ##
 * 1\. Setup magic_cloud, from https://stackoverflow.com/questions/22715738/imagemagick-error :
 ```bash
