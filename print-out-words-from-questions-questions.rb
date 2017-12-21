@@ -3,18 +3,22 @@ require 'rubygems'
 require 'pp'
 require 'csv'
 require 'uea-stemmer'
+
+f = File.open("stoplist.txt") or die "Unable to open stoplist.txt..."
+stoplist = [] 
+f.each_line {|line| stoplist.push line.chomp}
+
+def cleanup(w, stoplist)
+    w = w.delete(":\\-()[],;.!?'@#$%^&*<>/\"\\")
+    return "" if w == ""
+    return "" if w.length < 5
+    w.downcase!
+    return "" if stoplist.include?(w)
+    return w
+end
 stemmer = UEAStemmer.new
 
-#$CSV.new(ARGF.file, :headers => true).each do |row|
-# ARGF.each do |line|
-#   if product != 1 break
-#     if last_answerid == "NULL" break
-#   #pp line.chomp
-#   #double_quotes_changed_to_single_quotes = line.chomp.gsub("\"", "\'")
-#   #CSV.parse(line.chomp, :headers => true) do |row|
-#   pp line
-# end
-require 'csv'
+
 CSV.foreach(ARGV[0], headers: true).with_index(1) do |row, ln|
   product_id = row['product_id'].to_i
   $stderr.puts("SKIPPING NON DESKTOP") if product_id != 1
@@ -26,12 +30,13 @@ CSV.foreach(ARGV[0], headers: true).with_index(1) do |row, ln|
   title = row['title']
   content = row['content']
   title.split(" ").each do |title_word|
-    t = title_word.delete(":\\-()[],;.!?'@#$%^&*<>/\"\\")
+    t = cleanup(title_word, stoplist)
     next if t == ""
+    $stderr.printf("TITLE_WORD:%s\n",t)
     puts stemmer.stem(t)
   end
   content.split(" ").each do |content_word|
-    c = content_word.delete(":\\-()[],{};.!?'@#$%^&*<>/\"\\")
+    c = cleanup(content_word, stoplist)
     next if c == ""
     puts stemmer.stem(c)
   end
