@@ -5,7 +5,7 @@ sumo questions: graphics, metrics and infoviz
 ### 21December2017-ff55-ff57
 
 ```bash
-../print-out-words-from-questions-questions.rb ff57-questions_question.csv ff57-unanswered-questions.txt
+../print-out-words-from-questions-questions.rb ff57-questions_question.csv >ff57-unanswered-questions.txt
 ```
 
 ### 21December2017-ff55-ff56
