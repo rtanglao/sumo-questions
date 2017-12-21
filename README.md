@@ -2,6 +2,14 @@
 sumo questions: graphics, metrics and infoviz
 
 ## 21December2017 ##
+### 21December2017-ff55-ff57
+
+```bash
+../print-out-words-from-questions-questions.rb ff57-questions_question.csv ff57-unanswered-questions.txt
+```
+
+### 21December2017-ff55-ff56
+
 ```bash
 ../print-out-words-from-questions-questions.rb ff55-56-question_questions.csv >ff55-ff56-unanswered-questions.txt
 magic_cloud --textfile ff55-ff56-unanswered-questions.txt -f with-stopwords-ff55-ff56.jpg
