@@ -10,11 +10,18 @@ cd /Users/rtanglao/Dropbox/GIT/sumo-questions/MONGODB
 mongod --config /usr/local/etc/mongod.conf --dbpath=. &
 ```
 
-* 2\. add firefox 55 and 56 desktop questions 
+* 2\. fix firefox 55 and 56 desktop questions 
 
 ```bash
 . setupMongo
 cat SUMO-QUESTIONS_MYSQL_20OCT2017/ff55-56-question_questions.csv | ./add-questions-to-mongodb.rb 
+```
+
+* 3\. add firefox 57 desktop questions 
+
+```bash
+. setupMongo
+cat SUMO_QUESTIONS_MYSQL_FF57_15DEC2017/ff57-questions_question.csv | ./add-questions-to-mongodb.rb 
 ```
 
 ## 21December2017 ##
