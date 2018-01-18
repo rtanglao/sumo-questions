@@ -1,6 +1,22 @@
 # sumo-questions
 sumo questions: graphics, metrics and infoviz
 
+## 17January2018 ##
+
+* 1\. run mongodb
+
+```bash
+cd /Users/rtanglao/Dropbox/GIT/sumo-questions/MONGODB
+mongod --config /usr/local/etc/mongod.conf --dbpath=. &
+```
+
+* 2\. add firefox 55 and 56 desktop questions 
+
+```bash
+. setupMongo
+cat SUMO-QUESTIONS_MYSQL_20OCT2017/ff55-56-question_questions.csv | ./add-questions-to-mongodb.rb 
+```
+
 ## 21December2017 ##
 ### 21December2017-ff55-ff57
 
