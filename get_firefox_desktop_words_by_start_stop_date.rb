@@ -49,4 +49,6 @@ questionsColl.find(:created =>
     "product_id" => 1 
   }).each do |q|
   PP::pp(q, $stderr)
+  q["title"].split(' ').each {|t| puts t}
+  q["content"].split(' ').each {|c| puts c}
 end
