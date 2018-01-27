@@ -6,6 +6,7 @@ require 'time'
 require 'date'
 require 'mongo'
 
+Mongo::Logger.logger.level = ::Logger::FATAL # http://stackoverflow.com/questions/30292100/how-can-i-disable-mongodb-log-messages-in-console
 MONGO_HOST = ENV["MONGO_HOST"]
 raise(StandardError,"Set Mongo hostname in ENV: 'MONGO_HOST'") if !MONGO_HOST
 MONGO_PORT = ENV["MONGO_PORT"]
